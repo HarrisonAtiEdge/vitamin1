@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Main Rounds</title>
+    <link rel="stylesheet" href="modstyle.css">
+    
+
+    <script src="worker.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('./images/RulesBG.webp');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .navbar .img1 {
+            height: 5vw;
+            margin: 2rem;
+        }
+        .navbar .img2 {
+            height: 9vw;
+            /* margin: 2rem; */
+        }
+
+        .main {
+            width: 100%;
+        }
+
+        .forMainLogo {
+            text-align: center;
+        }
+
+        .forMainLogo img {
+            width: 35%;
+            margin-top: 3rem;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+       
+
+        .avatar {
+            width: 100%;
+            /* margin-left: -2.5rem; */
+            height: auto;
+            box-sizing: border-box;
+            overflow: hidden;
+            transform: translateY(0px);
+            animation: float 4s ease-in-out infinite;
+            
+        }
+
+        .avatar img {
+            width: 100%; /* Ensures the image takes up the full width of the avatar */
+            height: auto;
+        }
+        .menu-btn{
+            background-image: url(../moderator/images/Button.png);
+    background-size: cover;
+    background-position: center;
+    padding: 20px 45px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: transparent;
+    cursor: pointer;
+    /* border-radius: 5px; */
+    font-family: "Poetsen One", sans-serif;
+    letter-spacing: 0.2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img class="img1" src="./images/Evion-Logo.png" alt="Evion Logo">
+        <img class="img2" src="./images/MartinDowLogo.png" alt="Martin Dow Logo">
+    </div>
+    <audio id="clickSound" src="./sound/click.mp3"></audio>
+        <div class="forMainLogo">
+            <img id='gsk' src="./images/TheVitiminSocietyLogo.png" alt="GSK Image"/>
+        </div>
+ <!-- FOR Sound👇 and Back -->
+ <div class="buttonsoundalign">
+        
+    <button class="soundleft" style="background-color: transparent; color: transparent; border: none;">back</button>
+    
+    <button id="volumeup" class="soundright" onclick="backSound()" style="display: block;">  <i class="fas fa-volume-up"></i></button>
+    <button id="volumedown" class="soundright" onclick="backSound2()" style="display: none;">  <i class="fas fa-volume-xmark"></i></button>
+    
+</div>
+
+    <div style="width: 100%; display: flex; justify-content: center; text-align: center; ">    
+        <div id="left" class="userList"  style=" width: 85%; height: auto; position: relative; text-align: center; ">
+            <img  class="timerpic"  src="./images/Rounds-Box.png">
+            <!-- <h2>Top 10 Buzzer Winners</h2> -->
+            <div style="position: absolute; top: 50%; left: 49.5%; transform: translate(-50%, -50%); width: 67%; display: inline-flex;">
+                <a  style="margin-right: 2rem;" class="avatar" href="./Game1/rule1.html">
+                    <img src="./images/Round1.png" alt="Round1" />
+                </a>
+                <a style="margin-right: 2rem;" class="avatar" href="./Game2/rule2.html">
+                    <img src="./images/Round2.png" alt="Round2" />
+                </a>
+                <a class="avatar" href="./Game3/rule3.html">
+                    <img src="./images/Round3.png" alt="Round3" />
+                </a>
+            </div>
+        </div>        
+    </div>    
+
+    <div class="resetscorediv" style="width: 100%; gap: 50px; display: flex; justify-content: center; text-align: center;">
+        <button class="menu-btn"  onclick="resetScore();">Reset Score</button>
+        <button class="menu-btn" onclick="finalResult();">Final Results</button>
+
+        <!-- <audio src='../sound/Quiz Show Countdown Short.wav'></audio> -->
+    </div>
+    <img src="./images/Augmentrix-Game-New-3.webp" alt="" srcset="" style="display: none;">
+    <audio src="../sound/Background-Music.mp3"></audio>
+    <script >
+       
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           // Get the audio element
+           var audio = document.getElementById('clickSound');
+       
+           // Get all elements with the class 'btnBackground'
+           var startButtons = document.querySelectorAll('.avatar');
+       
+           // Add click event listener to each button with the 'btnBackground' class
+           startButtons.forEach(function(startButton) {
+               startButton.addEventListener('click', function(event) {
+                   // Prevent the default action to avoid immediate navigation
+                   
+                   // Play the sound
+                   audio.play();
+                   
+                   event.preventDefault();
+                   // Delay the navigation to allow the sound to play
+                   setTimeout(function() {
+                       window.location.href = startButton.href;
+                   }, 500); // Adjust the delay time as needed
+               });
+           });
+       });
+
+
+
+
+
+       var backgroundAudio = new Audio('./sound/Background-Music.mp3');
+  
+    
+  // backgroundAudio.play();
+//   backgroundAudio.loop = true; // Loop the audio
+  
+  var volumeup = document.getElementById('volumeup'); // Corrected ID
+  var volumedown = document.getElementById('volumedown'); // Corrected ID
+  volumedown.style.display = "none";
+  
+  function backSound() {
+      console.log("sound play");
+      backgroundAudio.play();
+      volumeup.style.display = 'none'; // Change the display to none when audio is playing
+      volumedown.style.display = 'block'; // Change the display to block when audio is playing
+  }
+  
+  function backSound2() {
+      console.log("sound pause");
+      backgroundAudio.pause();
+      volumeup.style.display = 'block'; // Change the display to block when audio is paused
+      volumedown.style.display = 'none'; // Change the display to none when audio is paused
+  }
+
+  function resetScore() {
+   
+
+    if (window.confirm("Are you sure you want to Reset Score?")) {
+        localStorage.clear();
+        console.log("Local storage has been cleared!");
+    } else {
+        console.log("Local storage was not cleared.");
+    }
+}
+
+function finalResult() {
+    window.location.href='final_result.html';
+}
+
+       </script>
+       
+</body>
+</html>

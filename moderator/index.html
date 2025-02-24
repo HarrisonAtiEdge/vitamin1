@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitamin</title>
+    <script src="worker.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('./images/RulesBG.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .navbar .img1 {
+            height: 6vw;
+            margin: 2rem;
+        }
+
+        .center-logo {
+            position: absolute;
+            top: 80px;
+            text-align: center;
+        }
+
+        .center-logo img {
+            margin: 5rem;
+            height: 16vw;
+        }
+        .start-button {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-top: 11rem;
+    transform: translateY(0px);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+.start-button img {
+    width: 29vw;/* Adjust based on your design */
+    height: auto;
+    display: block;
+}
+
+.start-button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 4vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    pointer-events: none; /* Ensures clicks go through to the <a> */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <img class="img1" src="./images/Evion-Logo.png" alt="Evion Logo">
+        <img src="./images/MartinDowLogo.png" alt="Martin Dow Logo">
+
+    </div>
+
+    <div class="center-logo">
+        <img src="./images/TheVitiminSocietyLogo.png" alt="Vitamin Society 2025">
+    </div>
+
+    <a href="main.html" class="start-button" id="startButton">
+        <img src="./images/Button.png" alt="Start Button">
+        <span>START</span>
+    </a>
+
+    <audio id="clickSound" src="./sound/click.mp3"></audio>
+
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the audio element
+            var audio = document.getElementById('clickSound');
+
+            // Get the start button link
+            var startButton = document.getElementById('startButton');
+
+            // Add click event listener to the start button
+            startButton.addEventListener('click', function(event) {
+                // Prevent the default action to avoid immediate navigation
+                event.preventDefault();
+
+                // Play the sound
+                audio.play();
+
+                // Delay the navigation to allow the sound to play
+                setTimeout(function() {
+                    window.location.href = startButton.href;
+                }, 500); // Adjust the delay time as needed
+            });
+        });
+    </script>
+</body>
+</html>
